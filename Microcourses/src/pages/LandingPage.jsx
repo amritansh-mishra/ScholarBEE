@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { TypewriterEffectSmooth } from '../components/typewriter-effect';
 import { 
   Award, 
   Users, 
@@ -11,6 +12,19 @@ import {
   Star,
   CheckCircle
 } from 'lucide-react';
+
+
+const words = [
+  { text: "Build", className: "!text-black !bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent" },
+  { text: "awesome", className: "!text-black" },
+  { text: "skills", className: "!text-black" },
+  { text: "with", className: "!text-black" },
+  {
+    text: "LearnReward.",
+    className: "!text-cyan-600 !bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent",
+  },
+ 
+];
 
 const LandingPage = () => {
   return (
@@ -50,9 +64,12 @@ const LandingPage = () => {
       <section className="pt-20 pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
+            <div className="flex justify-center text-center mb-4">
+              <TypewriterEffectSmooth words={words} />
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl py- font-bold  text-gray-900 mb-6">
               Empowering
-              <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+              <span className="text-black">
                 {' '}Learning
               </span>
               <br />
