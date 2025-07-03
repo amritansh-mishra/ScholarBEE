@@ -15,9 +15,9 @@ import {
 
 
 const words = [
-  { text: "Build", className: "!text-black !bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent" },
-  { text: "awesome", className: "!text-black" },
-  { text: "skills", className: "!text-black" },
+  { text: "Empowering", className: "!text-black !bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent" },
+  { text: "Learning", className: "!text-black" },
+  { text: "through", className: "!text-black" },
   { text: "with", className: "!text-black" },
   {
     text: "LearnReward.",
@@ -45,7 +45,7 @@ const LandingPage = () => {
             <div className="flex items-center space-x-4">
               <Link
                 to="/login"
-                className="text-gray-600 hover:text-teal-600 font-medium transition-colors"
+                className="text-gray-600 hover:text-teal-600 font-semibold transition-colors"
               >
                 Login
               </Link>
@@ -67,14 +67,7 @@ const LandingPage = () => {
             <div className="flex justify-center text-center mb-4">
               <TypewriterEffectSmooth words={words} />
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl py- font-bold  text-gray-900 mb-6">
-              Empowering
-              <span className="text-black">
-                {' '}Learning
-              </span>
-              <br />
-              Through Rewards
-            </h1>
+           
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
               India's first UPI-powered micro-scholarship platform that rewards students for 
               milestone-based learning achievements with instant financial support.
