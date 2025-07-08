@@ -58,4 +58,30 @@ router.post(
   authController.resetPassword
 );
 
+const originalPost = router.post.bind(router);
+router.post = (path, ...args) => {
+  console.log('Registering POST route:', path);
+  return originalPost(path, ...args);
+};
+const originalGet = router.get.bind(router);
+router.get = (path, ...args) => {
+  console.log('Registering GET route:', path);
+  return originalGet(path, ...args);
+};
+const originalPut = router.put.bind(router);
+router.put = (path, ...args) => {
+  console.log('Registering PUT route:', path);
+  return originalPut(path, ...args);
+};
+const originalPatch = router.patch.bind(router);
+router.patch = (path, ...args) => {
+  console.log('Registering PATCH route:', path);
+  return originalPatch(path, ...args);
+};
+const originalDelete = router.delete.bind(router);
+router.delete = (path, ...args) => {
+  console.log('Registering DELETE route:', path);
+  return originalDelete(path, ...args);
+};
+
 module.exports = router;

@@ -64,7 +64,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-//  Global Error Handler
+//  Global Error Handler (should be after all routes)
 app.use((err, req, res, next) => {
   console.error('Global Error Handler:', err);
   res.status(500).json({ 

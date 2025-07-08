@@ -1,0 +1,71 @@
+# Node modules
+/backend/node_modules/
+/frontend/node_modules/
+
+# Build output
+/frontend/dist/
+/backend/build/
+
+# Environment variables
+/backend/.env
+/backend/env.development
+/frontend/.env
+/frontend/env.development
+
+# Logs
+/backend/logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage
+/coverage/
+
+# Misc
+*.local
+*.cache
+*.log
+
+# IDE and editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Database files
+*.db
+*.sqlite
+
+# Parcel, Next.js, Nuxt.js, Vuepress, Serverless, etc. (if ever used)
+.cache
+.parcel-cache
+.next
+.nuxt
+.vuepress/dist
+.serverless/
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# Optional REPL history
+.node_repl_history
+
+# Backup files
+*.bak
+*.backup 
