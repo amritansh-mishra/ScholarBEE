@@ -9,8 +9,8 @@ const host = process.env.HOST || 'localhost'; // Use environment HOST or default
 const server = http.createServer(app);
 
 // 🎯 Start the server
-server.listen(port, host, () => {
-  console.log(`🚀 ScholarBEE Backend Server is running!`);
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
   console.log(`📍 URL: http://${host}:${port}`);
   console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`⏰ Started at: ${new Date().toISOString()}`);
