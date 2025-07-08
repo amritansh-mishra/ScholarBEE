@@ -99,12 +99,6 @@ The Student Wallet system allows students to receive, manage, and withdraw schol
 
 ---
 
-## Testing
-- A test script (`test-wallet.js`) is provided to verify wallet creation, UPI update, stats, and transaction history.
-- Run with: `node test-wallet.js` (after installing dependencies: `npm install axios`)
-
----
-
 ## Extending/Customizing
 - **Real UPI Integration:** Integrate with a payment gateway for real payouts.
 - **Notifications:** Notify students on credit/withdrawal.
@@ -122,8 +116,6 @@ The Student Wallet system allows students to receive, manage, and withdraw schol
 - `frontend/src/components/Navbar.jsx` — Wallet link in navbar
 - `frontend/src/pages/student/StudentDashboard.jsx` — Wallet link in dashboard
 - `frontend/src/pages/sponsor/ApplicationsManagement.jsx` — Sponsor triggers wallet credit
-- `test-wallet.js` — Test script for wallet API
-
 ---
 
 ## Questions?
