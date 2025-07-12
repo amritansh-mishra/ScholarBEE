@@ -37,16 +37,30 @@ const PaymentPage = () => {
       setLoading(true);
       setError(null);
       
+      // Validate scholarshipId
+      if (!scholarshipId) {
+        setError('Invalid scholarship ID');
+        return;
+      }
+      
+      console.log('🔍 Fetching scholarship with ID:', scholarshipId);
       const data = await sponsorAPI.getScholarshipById(scholarshipId);
       
       if (data.success) {
         setScholarship(data.scholarship);
+        console.log('✅ Scholarship loaded successfully:', data.scholarship.title);
       } else {
         setError(data.message || 'Scholarship not found');
       }
     } catch (error) {
-      console.error('Error fetching scholarship:', error);
-      setError(error.message || 'Failed to load scholarship details. The service may be hibernating, please try again.');
+      console.error('❌ Error fetching scholarship:', error);
+      if (error.message.includes('404') || error.message.includes('not found')) {
+        setError('This scholarship does not exist or you do not have permission to access it.');
+      } else if (error.message.includes('Empty response') || error.message.includes('Invalid response')) {
+        setError('Service is temporarily unavailable. Please try again in a moment.');
+      } else {
+        setError(error.message || 'Failed to load scholarship details. Please try again.');
+      }
     } finally {
       setLoading(false);
     }

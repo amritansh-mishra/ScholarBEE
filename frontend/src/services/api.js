@@ -56,14 +56,27 @@ const apiRequest = async (endpoint, options = {}, retryCount = 0) => {
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
-    // Parse JSON response
-    const data = await response.json();
-    return data;
+    // Parse JSON response with error handling
+    const text = await response.text();
+    if (!text) {
+      throw new Error('Empty response from server');
+    }
+    
+    try {
+      const data = JSON.parse(text);
+      return data;
+    } catch (parseError) {
+      console.error('JSON Parse Error:', parseError, 'Response text:', text);
+      throw new Error('Invalid response format from server');
+    }
   } catch (error) {
     // Handle network errors and JSON parsing errors
-    if (error.message.includes('Not Found') || error.message.includes('Failed to fetch')) {
+    if (error.message.includes('Not Found') || 
+        error.message.includes('Failed to fetch') || 
+        error.message.includes('Empty response') ||
+        error.message.includes('Invalid response format')) {
       if (retryCount < maxRetries) {
-        console.log(`🔄 Network error, retrying in ${retryDelay/1000}s... (attempt ${retryCount + 1}/${maxRetries})`);
+        console.log(`🔄 Service error, retrying in ${retryDelay/1000}s... (attempt ${retryCount + 1}/${maxRetries})`);
         await new Promise(resolve => setTimeout(resolve, retryDelay));
         return apiRequest(endpoint, options, retryCount + 1);
       } else {
