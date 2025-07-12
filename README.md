@@ -21,7 +21,7 @@ ScholarBEE is a comprehensive Micro-scholarship management system that bridges t
 
 - **🏫 Cumulative**: Students can earn multiple micro-scholarships over time, which add up.
 
--**🎯 Often Targeted at High School Students**: Especially those preparing for college.
+- **🎯 Often Targeted at High School Students**: Especially those preparing for college.
 
 ## 🛠️ Tech Stack
 
