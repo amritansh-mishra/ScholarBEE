@@ -3,7 +3,7 @@
  * Centralized service for handling all API calls to the backend
  */
 
-// 🚀 API Base Configuration
+// 🚀 API Base Configuration - Updated for production
 const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3000/api' : 'https://scholarbee-glqt.onrender.com/api');
 
 /**
