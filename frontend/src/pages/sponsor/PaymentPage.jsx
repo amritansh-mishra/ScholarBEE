@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
-import { sponsorAPI } from '../../services/api';
+import { sponsorAPI, paymentAPI } from '../../services/api';
 import { 
   CreditCard, 
   IndianRupee, 
@@ -97,57 +97,51 @@ const PaymentPage = () => {
     setError(null);
 
     try {
-      const response = await fetch('/api/payments/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-        },
-        body: JSON.stringify({
-          scholarshipId,
-          paymentMethod,
-          paymentDetails
-        })
-      });
-
-      const data = await response.json();
+      console.log('💳 Creating payment for scholarship:', scholarshipId);
+      const data = await paymentAPI.createPayment(scholarshipId, paymentMethod, paymentDetails);
+      
       if (data.success) {
         setPaymentStatus(data.payment);
+        console.log('✅ Payment created successfully:', data.payment.id);
         // Poll for payment status
         pollPaymentStatus(data.payment.id);
       } else {
-        setError(data.message);
+        setError(data.message || 'Failed to create payment');
       }
     } catch (error) {
-      console.error('Error creating payment:', error);
-      setError('Failed to process payment');
+      console.error('❌ Error creating payment:', error);
+      setError(error.message || 'Failed to process payment. Please try again.');
     } finally {
       setProcessing(false);
     }
   };
 
   const pollPaymentStatus = async (paymentId) => {
+    console.log('🔄 Starting payment status polling for:', paymentId);
     const pollInterval = setInterval(async () => {
       try {
-        const response = await fetch(`/api/payments/status/${paymentId}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-          }
-        });
-        const data = await response.json();
+        const data = await paymentAPI.getPaymentStatus(paymentId);
+        
         if (data.success) {
           setPaymentStatus(data.payment);
+          console.log('📊 Payment status:', data.payment.status);
+          
           if (data.payment.status === 'completed' || data.payment.status === 'failed') {
             clearInterval(pollInterval);
+            console.log('✅ Payment polling completed:', data.payment.status);
+            
             if (data.payment.status === 'completed') {
               setTimeout(() => {
                 navigate('/sponsor/scholarships');
               }, 3000);
             }
           }
+        } else {
+          console.log('⚠️ Payment status check failed:', data.message);
         }
       } catch (error) {
-        console.error('Error polling payment status:', error);
+        console.error('❌ Error polling payment status:', error);
+        // Don't stop polling on temporary errors, let the retry logic handle it
       }
     }, 2000);
   };
