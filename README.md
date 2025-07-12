@@ -57,6 +57,12 @@ cd ScholarBEE
 -  **Backend API**: https://scholarbee-glqt.onrender.com
 -  **Backend Health Status**: https://scholarbee-frontend.onrender.com/api/health
 
+
+**Test-Sample** 
+-  **Student-Login** : Email- student1@example.com , Password- 123456789a
+-  **Sponsor-Login** : Email- sponsor1@gmail.com , Passord - 123456789a
+
+
 ### Manual Setup
 ```bash
 # Backend
