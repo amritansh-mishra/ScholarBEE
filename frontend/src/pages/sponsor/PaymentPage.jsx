@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
+import { sponsorAPI } from '../../services/api';
 import { 
   CreditCard, 
   IndianRupee, 
@@ -32,14 +33,11 @@ const PaymentPage = () => {
   }, [scholarshipId]);
 
   const fetchScholarshipDetails = async () => {
-        try {
-      const response = await fetch(`/api/sponsors/scholarships/${scholarshipId}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-        }
-      });
-
-      const data = await response.json();
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const data = await sponsorAPI.getScholarshipById(scholarshipId);
       
       if (data.success) {
         setScholarship(data.scholarship);
@@ -48,7 +46,7 @@ const PaymentPage = () => {
       }
     } catch (error) {
       console.error('Error fetching scholarship:', error);
-      setError('Failed to load scholarship details');
+      setError(error.message || 'Failed to load scholarship details. The service may be hibernating, please try again.');
     } finally {
       setLoading(false);
     }

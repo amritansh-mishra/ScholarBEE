@@ -7,14 +7,17 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3000/api' : 'https://scholarbee-glqt.onrender.com/api');
 
 /**
- * 🔧 HTTP Request Helper
- * Handles common HTTP requests with error handling and authentication
+ * 🔧 HTTP Request Helper with Retry Logic
+ * Handles common HTTP requests with error handling, authentication, and hibernation retry
  * @param {string} endpoint - API endpoint path
  * @param {Object} options - Fetch options
+ * @param {number} retryCount - Current retry attempt
  * @returns {Promise} Response data
  */
-const apiRequest = async (endpoint, options = {}) => {
+const apiRequest = async (endpoint, options = {}, retryCount = 0) => {
   const url = `${API_BASE_URL}${endpoint}`;
+  const maxRetries = 3;
+  const retryDelay = 2000; // 2 seconds
   
   // Get auth token from localStorage
   const token = localStorage.getItem('authToken');
@@ -38,6 +41,17 @@ const apiRequest = async (endpoint, options = {}) => {
 
     // Handle non-2xx responses
     if (!response.ok) {
+      // Check if it's a hibernation error (503 or empty response)
+      if (response.status === 503 || response.status === 0) {
+        if (retryCount < maxRetries) {
+          console.log(`🔄 Service hibernated, retrying in ${retryDelay/1000}s... (attempt ${retryCount + 1}/${maxRetries})`);
+          await new Promise(resolve => setTimeout(resolve, retryDelay));
+          return apiRequest(endpoint, options, retryCount + 1);
+        } else {
+          throw new Error('Service is hibernated. Please try again in a moment.');
+        }
+      }
+      
       const errorData = await response.json().catch(() => ({}));
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
@@ -46,6 +60,17 @@ const apiRequest = async (endpoint, options = {}) => {
     const data = await response.json();
     return data;
   } catch (error) {
+    // Handle network errors and JSON parsing errors
+    if (error.message.includes('Not Found') || error.message.includes('Failed to fetch')) {
+      if (retryCount < maxRetries) {
+        console.log(`🔄 Network error, retrying in ${retryDelay/1000}s... (attempt ${retryCount + 1}/${maxRetries})`);
+        await new Promise(resolve => setTimeout(resolve, retryDelay));
+        return apiRequest(endpoint, options, retryCount + 1);
+      } else {
+        throw new Error('Service temporarily unavailable. Please try again in a moment.');
+      }
+    }
+    
     console.error('❌ API Request Error:', error);
     throw error;
   }
@@ -135,6 +160,16 @@ export const sponsorAPI = {
 
   // Get applications for a specific scholarship
   getScholarshipApplications: (scholarshipId) => apiRequest(`/sponsors/scholarships/${scholarshipId}/applications`),
+
+  // Get specific scholarship by ID (with enhanced error handling)
+  getScholarshipById: async (scholarshipId) => {
+    try {
+      return await apiRequest(`/sponsors/scholarships/${scholarshipId}`);
+    } catch (error) {
+      console.error('Error fetching scholarship:', error);
+      throw new Error(`Failed to load scholarship details: ${error.message}`);
+    }
+  },
 
   // Create new scholarship
   createScholarship: (scholarshipData) => apiRequest('/sponsors/scholarships/create', {
