@@ -1,4 +1,4 @@
-# 🐝 ScholarBEE - Scholarship Management Platform
+# 🐝 ScholarBEE - Micro-Scholarship Management Platform
 
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
