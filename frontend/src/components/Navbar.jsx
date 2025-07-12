@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import logo from '../assets/scholarbee-logo.png';
 import { 
   LogOut, 
   User, 
@@ -61,17 +62,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to={user ? (user.role === 'student' ? '/student/dashboard' : '/sponsor/dashboard') : '/'} 
                   className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg transform rotate-12">
-                  <div className="w-6 h-6 bg-white rounded-lg flex items-center justify-center transform -rotate-12">
-                    <Award className="w-4 h-4 text-green-600" />
-                  </div>
-                </div>
-                <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center shadow-sm">
-                  <span className="text-xs font-bold text-yellow-900">₹</span>
-                </div>
-                <div className="absolute -bottom-0.5 -left-0.5 w-2 h-2 bg-orange-400 rounded-full"></div>
-              </div>
+              <img src={logo} alt="ScholarBEE Logo" className="w-10 h-10 rounded-xl object-contain shadow-lg" />
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-gray-900">ScholarBEE</span>
                 <span className="text-xs text-green-600 font-medium -mt-1">Empowering Education</span>

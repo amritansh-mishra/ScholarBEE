@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bee Body (tilted) -->
+  <ellipse cx="62" cy="75" rx="22" ry="30" fill="#fff" stroke="#43A047" stroke-width="3" transform="rotate(-12 62 75)"/>
+  <!-- Bee Stripes (curved, gold) -->
+  <path d="M52 70 Q62 74 72 70" stroke="#FFD600" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M52 80 Q62 84 72 80" stroke="#FFD600" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Head -->
+  <circle cx="62" cy="38" r="11" fill="#fff" stroke="#43A047" stroke-width="3"/>
+  <!-- Wings -->
+  <ellipse cx="48" cy="48" rx="13" ry="22" fill="#43A047" fill-opacity="0.13" stroke="#43A047" stroke-width="2"/>
+  <ellipse cx="76" cy="44" rx="13" ry="22" fill="#43A047" fill-opacity="0.13" stroke="#43A047" stroke-width="2"/>
+  <!-- Graduation Tassel on right wing -->
+  <line x1="76" y1="22" x2="76" y2="12" stroke="#43A047" stroke-width="2"/>
+  <circle cx="76" cy="12" r="2" fill="#FFD600"/>
+  <!-- Antennae -->
+  <path d="M57 30 Q54 22 62 20" stroke="#43A047" stroke-width="2" fill="none"/>
+  <path d="M67 30 Q70 22 62 20" stroke="#43A047" stroke-width="2" fill="none"/>
+</svg> 
