@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Eye, EyeOff, Award, Building } from 'lucide-react';
+import logo from '../assets/scholarbee-logo.png';
 
 const SponsorSignup = () => {
   const [formData, setFormData] = useState({
@@ -70,11 +71,9 @@ const SponsorSignup = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center space-x-2 mb-6">
-            <div className="w-10 h-10 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-xl flex items-center justify-center">
-              <Award className="w-6 h-6 text-white" />
-            </div>
+            <img src={logo} alt="ScholarBEE Logo" className="w-10 h-10 rounded-xl object-contain" />
             <span className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-              LearnReward
+              ScholarBEE
             </span>
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Become a Sponsor</h1>

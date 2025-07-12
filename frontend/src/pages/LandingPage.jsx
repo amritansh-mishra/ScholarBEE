@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/scholarbee-logo.png';
 import { 
   Award, 
   Users, 
@@ -29,18 +30,7 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg transform rotate-12">
-                  <div className="w-8 h-8 bg-white rounded-xl flex items-center justify-center transform -rotate-12">
-                    <Award className="w-5 h-5 text-green-600" />
-                  </div>
-                </div>
-                <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center shadow-md">
-                  <span className="text-xs font-bold text-yellow-900">₹</span>
-                </div>
-                <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-orange-400 rounded-full"></div>
-                <div className="absolute top-1 -left-1 w-2 h-2 bg-orange-300 rounded-full"></div>
-              </div>
+              <img src={logo} alt="ScholarBEE Logo" className="w-12 h-12 rounded-2xl object-contain shadow-lg" />
               <div className="flex flex-col">
                 <span className="text-2xl font-bold text-gray-900">ScholarBEE</span>
                 <span className="text-xs text-green-600 font-medium -mt-1">Empowering Education</span>
@@ -312,17 +302,7 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-6">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg transform rotate-12">
-                  <div className="w-6 h-6 bg-white rounded-lg flex items-center justify-center transform -rotate-12">
-                    <Award className="w-4 h-4 text-green-600" />
-                  </div>
-                </div>
-                <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center shadow-sm">
-                  <span className="text-xs font-bold text-yellow-900">₹</span>
-                </div>
-                <div className="absolute -bottom-0.5 -left-0.5 w-2 h-2 bg-orange-400 rounded-full"></div>
-              </div>
+              <img src={logo} alt="ScholarBEE Logo" className="w-10 h-10 rounded-xl object-contain shadow-lg" />
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-white">ScholarBEE</span>
                 <span className="text-xs text-green-200 font-medium -mt-1">Empowering Education</span>
