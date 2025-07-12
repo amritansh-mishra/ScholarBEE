@@ -1,40 +1,27 @@
 # 🐝 ScholarBEE - Scholarship Management Platform
 
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-6.0+-green.svg)](https://mongodb.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **A full-stack scholarship management platform connecting students with educational opportunities and sponsors**
+> **A full-stack Micro-scholarship management platform connecting students with educational opportunities and sponsors**
 
 ## 🎯 What We Built
 
-ScholarBEE is a comprehensive scholarship management system that bridges the gap between students seeking financial aid and organizations offering scholarships. Our platform streamlines the entire scholarship lifecycle from creation to application processing.
+A Micro-scholarship is a small financial award typically given to students for specific achievements, milestones, or behaviors, rather than a large, lump-sum traditional scholarship. These can help students gradually earn money for college or other educational needs.
+ScholarBEE is a comprehensive Micro-scholarship management system that bridges the gap between students seeking financial aid and organizations offering scholarships.
 
-### 🏆 Key Features
+### Key Features of Micro-Scholarships
 
-#### 👨‍🎓 **Student Portal**
-- **Smart Scholarship Matching**: AI-powered recommendations based on student profile
-- **One-Click Applications**: Streamlined application process with document upload
-- **Real-time Tracking**: Live status updates for all applications
-- **Digital Wallet**: Secure scholarship fund management
+- **💰 Small Amounts**: Awards usually range from a few dollars to a few hundred dollars.
 
-#### 💼 **Sponsor Dashboard**
-- **Scholarship Creation Wizard**: Easy-to-use interface for creating programs
-- **Application Management**: Advanced filtering and review tools
-- **Analytics Dashboard**: Performance metrics and insights
-- **Payment Integration**: Automated scholarship disbursement
+- **🧠 Merit-Based or Activity-Based**: Given for things like good grades, extracurricular involvement, community service, test scores, etc.
 
-#### 🏢 **Institutional Tools**
-- **College Portal**: Student management and verification
-- **CSR Portal**: Corporate social responsibility tracking
-- **Reporting Suite**: Comprehensive analytics and reporting
+- **🏫 Cumulative**: Students can earn multiple micro-scholarships over time, which add up.
 
-#### 👨‍💼 **Admin Panel**
-- **User Management**: Complete oversight of all users
-- **System Analytics**: Platform health monitoring
-- **Content Moderation**: Quality control and verification
+-**🎯 Often Targeted at High School Students**: Especially those preparing for college.
 
 ## 🛠️ Tech Stack
 
@@ -43,20 +30,13 @@ ScholarBEE is a comprehensive scholarship management system that bridges the gap
 - **MongoDB** + **Mongoose** - Scalable database with ODM
 - **JWT Authentication** - Secure user sessions
 - **Multer** - File upload handling
-- **Nodemailer** - Email notifications
 
 ### Frontend
 - **React 18** - Modern UI framework
-- **TypeScript** - Type-safe development
+- **JavaScript (JSX)** - Component development
 - **Vite** - Lightning-fast build tool
 - **Tailwind CSS** - Utility-first styling
-- **React Router** - Client-side routing
-- **Lucide React** - Beautiful icons
 
-### DevOps
-- **CORS** - Cross-origin resource sharing
-- **Environment Management** - Secure configuration
-- **Automated Setup** - One-command deployment
 
 ## 🚀 Quick Start (5 Minutes!)
 
@@ -72,9 +52,10 @@ cd ScholarBEE
 ./start-dev.sh
 ```
 
-**That's it!** Your application will be running at:
-- 🌐 **Frontend**: http://localhost:5173
-- 🔧 **Backend API**: http://localhost:3000
+**That's it!** This application will be running at:
+-  **Frontend**: https://scholarbee-frontend.onrender.com
+-  **Backend API**: https://scholarbee-glqt.onrender.com
+-  **Backend Health Status**: https://scholarbee-frontend.onrender.com/api/health
 
 ### Manual Setup
 ```bash
@@ -89,33 +70,6 @@ npm install
 npm run dev
 ```
 
-## 🔥 Cool Features We Built
-
-### 1. **Smart Matching Algorithm**
-- Analyzes student profiles and scholarship requirements
-- Provides personalized recommendations
-- Reduces application time by 70%
-
-### 2. **Real-time Notifications**
-- Live status updates for applications
-- Email notifications for important events
-- Push notifications for mobile users
-
-### 3. **Digital Wallet System**
-- Secure scholarship fund management
-- Transaction history and tracking
-- Automated disbursement system
-
-### 4. **Advanced Analytics**
-- Sponsor performance metrics
-- Student success tracking
-- Platform usage insights
-
-### 5. **Multi-role Architecture**
-- Separate portals for different user types
-- Role-based access control
-- Scalable permission system
-
 
 ## 🏗️ Architecture
 
@@ -126,7 +80,7 @@ ScholarBEE/
 │   ├── models/       # Database schemas
 │   ├── routes/       # API endpoints
 │   └── middleware/   # Custom middleware
-├── frontend/         # React + TypeScript
+├── frontend/         # React + JavaScript
 │   ├── components/   # Reusable UI components
 │   ├── pages/        # Page components
 │   ├── services/     # API integration
@@ -176,12 +130,6 @@ PUT    /api/applications/:id      # Update status
 - Intuitive navigation
 - Real-time feedback
 
-
-## 📞 Support
-
-- **Documentation**: [SETUP_GUIDE.md](./SETUP_GUIDE.md)
-- **Demo**: http://localhost:5173 (after setup)
----
 
 **Built with ❤️ for the hackathon community**
 
