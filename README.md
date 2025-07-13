@@ -23,6 +23,8 @@ ScholarBEE is a comprehensive Micro-scholarship management system that bridges t
 
 - **🎯 Often Targeted at High School Students**: Especially those preparing for college.
 
+( **NOTE**: "We are in an active phase of research and development, working to introduce innovative features that will enrich user experience and strengthen the impact of micro-scholarships." )
+
 ## 🛠️ Tech Stack
 
 ### Backend
@@ -135,6 +137,7 @@ PUT    /api/applications/:id      # Update status
 - Responsive design for all devices
 - Intuitive navigation
 - Real-time feedback
+
 
 
 **Built with ❤️ for the hackathon community**
