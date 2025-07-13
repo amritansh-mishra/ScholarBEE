@@ -1,3 +1,9 @@
+/**
+ * ScholarBEE - Micro-Scholarship Management Platform
+ * Copyright (c) 2024 ScholarBEE
+ * All rights reserved.
+ */
+
 const http = require('http');
 const app = require('./app'); // Import the Express app configuration
 
