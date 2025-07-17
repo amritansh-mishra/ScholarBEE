@@ -54,6 +54,8 @@ cd ScholarBEE
 ./start-dev.sh
 ```
 
+**Demo Video**: https://youtu.be/e4Y-yFGUmIs
+
 **That's it!** This application will be running at:
 -  **Frontend**: https://scholarbee-frontend.onrender.com
 -  **Backend API**: https://scholarbee-glqt.onrender.com
