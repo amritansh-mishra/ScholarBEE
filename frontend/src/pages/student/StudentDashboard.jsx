@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
+import VerificationStatus from '../../components/VerificationStatus';
 import { studentAPI } from '../../services/api';
 import { 
   Award,
@@ -210,6 +211,11 @@ const StudentDashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Verification Status */}
+          <div className="lg:col-span-1">
+            <VerificationStatus />
+          </div>
+          
           {/* Available Scholarships */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200">

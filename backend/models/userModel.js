@@ -36,7 +36,44 @@ const userSchema = new mongoose.Schema({
   organizationType: String,
   organizationName: String,
   missionStatement: String,
-  logoUrl: String
+  logoUrl: String,
+
+  // Digital Verification Fields
+  verificationStatus: {
+    type: String,
+    enum: ['pending', 'verified', 'failed'],
+    default: 'pending'
+  },
+  aadhaarNumber: {
+    type: String,
+    sparse: true // Allows multiple null values
+  },
+  aadhaarVerified: {
+    type: Boolean,
+    default: false
+  },
+  aadhaarData: {
+    name: String,
+    dob: String,
+    gender: String,
+    address: String,
+    photo: String
+  },
+  digiLockerVerified: {
+    type: Boolean,
+    default: false
+  },
+  digiLockerDocuments: [{
+    documentType: String,
+    documentNumber: String,
+    verified: Boolean,
+    verifiedAt: Date
+  }],
+  verificationAttempts: {
+    type: Number,
+    default: 0
+  },
+  lastVerificationAttempt: Date
 
 }, { timestamps: true });
 

@@ -10,6 +10,7 @@ import StudentProfile from './pages/student/StudentProfile';
 import ScholarshipApplication from './pages/student/ScholarshipApplication';
 import StudentApplications from './pages/student/StudentApplications';
 import Wallet from './pages/student/Wallet';
+import StudentVerification from './components/StudentVerification';
 import SponsorDashboard from './pages/sponsor/SponsorDashboard';
 import SponsorProfile from './pages/sponsor/SponsorProfile';
 import CreateScholarship from './pages/sponsor/CreateScholarship';
@@ -69,6 +70,11 @@ function App() {
             <Route path="/student/wallet" element={
               <ProtectedRoute requiredRole="student">
                 <Wallet />
+              </ProtectedRoute>
+            } />
+            <Route path="/student/verification" element={
+              <ProtectedRoute requiredRole="student">
+                <StudentVerification />
               </ProtectedRoute>
             } />
             

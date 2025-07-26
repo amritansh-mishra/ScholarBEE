@@ -386,6 +386,41 @@ export const publicAPI = {
   healthCheck: () => apiRequest('/health'),
 };
 
+// 🔐 Verification API Methods
+export const verificationAPI = {
+  // Get verification status
+  getStatus: async () => {
+    const response = await apiRequest('/verification/status');
+    return response;
+  },
+
+  // Aadhaar verification
+  sendAadhaarOTP: async (aadhaarNumber) => {
+    const response = await apiRequest('/verification/aadhaar/send-otp', {
+      method: 'POST',
+      body: JSON.stringify({ aadhaarNumber }),
+    });
+    return response;
+  },
+
+  verifyAadhaar: async (aadhaarNumber, otp) => {
+    const response = await apiRequest('/verification/aadhaar/verify', {
+      method: 'POST',
+      body: JSON.stringify({ aadhaarNumber, otp }),
+    });
+    return response;
+  },
+
+  // DigiLocker verification
+  verifyDigiLocker: async (documentType, documentNumber) => {
+    const response = await apiRequest('/verification/digilocker/verify', {
+      method: 'POST',
+      body: JSON.stringify({ documentType, documentNumber }),
+    });
+    return response;
+  }
+};
+
 // Export default API object with all methods
 export default {
   auth: authAPI,
@@ -399,4 +434,5 @@ export default {
   wallet: walletAPI,
   payment: paymentAPI,
   public: publicAPI,
+  verification: verificationAPI,
 }; 

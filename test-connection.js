@@ -1,78 +1,40 @@
-#!/usr/bin/env node
-
 /**
- * 🔗 ScholarBEE Connection Test
- * Simple script to test if frontend can connect to backend
+ * 🔗 Database Connection Test Script
+ * Tests MongoDB connection for ScholarBEE backend
  */
 
-const http = require('http');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const API_URL = 'http://localhost:3000/api/health';
+// MongoDB connection string
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/scholarbee';
 
-console.log('🔗 Testing ScholarBEE Backend Connection...');
-console.log(`📍 Testing: ${API_URL}`);
-console.log('');
+console.log('🔍 Testing MongoDB connection...');
+console.log(`📍 Database: ${mongoUri.split('/').pop()}`);
+console.log('⏳ Connecting...');
 
-// Test backend connection
-const testBackend = () => {
-  return new Promise((resolve, reject) => {
-    const req = http.get(API_URL, (res) => {
-      let data = '';
-      
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      
-      res.on('end', () => {
-        try {
-          const response = JSON.parse(data);
-          resolve({ status: res.statusCode, data: response });
-        } catch (error) {
-          reject(new Error('Invalid JSON response'));
-        }
-      });
-    });
+// Test connection
+mongoose.connect(mongoUri)
+  .then(() => {
+    console.log('✅ MongoDB connected successfully!');
+    console.log(`📍 Database: ${mongoUri.split('/').pop()}`);
+    console.log('🌐 Connection ready for ScholarBEE');
     
-    req.on('error', (error) => {
-      reject(error);
-    });
-    
-    req.setTimeout(5000, () => {
-      req.destroy();
-      reject(new Error('Request timeout'));
-    });
-  });
-};
-
-// Run the test
-testBackend()
-  .then((result) => {
-    console.log('✅ Backend Connection Successful!');
-    console.log(`📊 Status Code: ${result.status}`);
-    console.log(`📝 Response:`, result.data);
-    console.log('');
-    console.log('🎉 Your ScholarBEE backend is working correctly!');
-    console.log('🌐 You can now access:');
-    console.log('   • Frontend: http://localhost:5173');
-    console.log('   • Backend API: http://localhost:3000');
-    console.log('   • Health Check: http://localhost:3000/api/health');
+    // Test basic operations
+    return mongoose.connection.db.admin().ping();
   })
-  .catch((error) => {
-    console.log('❌ Backend Connection Failed!');
-    console.log(`📝 Error: ${error.message}`);
-    console.log('');
-    console.log('🔧 Troubleshooting:');
-    console.log('   1. Make sure the backend server is running');
-    console.log('      cd backend && npm run dev');
-    console.log('');
-    console.log('   2. Check if MongoDB is running');
-    console.log('      On macOS: brew services start mongodb-community');
-    console.log('      On Windows: Start MongoDB service');
-    console.log('      On Linux: sudo systemctl start mongod');
-    console.log('');
-    console.log('   3. Verify the backend is on port 3000');
-    console.log('      Check: http://localhost:3000/api/health');
-    console.log('');
-    console.log('   4. Check environment variables');
-    console.log('      Make sure backend/.env exists and is configured');
+  .then(() => {
+    console.log('🏓 Database ping successful');
+    console.log('🎉 All tests passed! Database is ready.');
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error('❌ MongoDB connection failed:');
+    console.error(err.message);
+    console.log('💡 Troubleshooting tips:');
+    console.log('   1. Check if MongoDB is running');
+    console.log('   2. Verify MONGODB_URI in .env file');
+    console.log('   3. Check network connectivity');
+    console.log('   4. Verify database credentials');
+    process.exit(1);
   }); 

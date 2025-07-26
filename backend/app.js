@@ -21,6 +21,7 @@ const institutionalRoutes = require('./routes/institutionalRoutes');
 const publicRoutes = require('./routes/publicRoute');
 const walletRoutes = require('./routes/walletRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const verificationRoutes = require('./routes/verificationRoutes');
 
 //  Middleware Configuration
 app.use(express.json()); // Parse JSON request bodies
@@ -51,6 +52,7 @@ app.use('/api/dashboards', dashboardRoutes);     // NGO and Student Progress Das
 app.use('/api/institutional', institutionalRoutes); // College and CSR Portals
 app.use('/api/wallet', walletRoutes);            // Student Wallet Management
 app.use('/api/payments', paymentRoutes);         // Sponsor Payment Management
+app.use('/api/verification', verificationRoutes); // Digital Verification: Aadhaar & DigiLocker
 app.use('/api', publicRoutes);                   // Public Pages: Landing, About, Contact, Courses
 
 //  Health Check Endpoint

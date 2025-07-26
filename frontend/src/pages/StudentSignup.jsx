@@ -84,7 +84,8 @@ const StudentSignup = () => {
     try {
       const success = await signup(formData, 'student');
       if (success) {
-        navigate('/student/dashboard');
+        // Redirect to verification page instead of dashboard
+        navigate('/student/verification');
       }
     } catch (err) {
       setError('Registration failed. Please try again.');
