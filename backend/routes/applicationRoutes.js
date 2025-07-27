@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const applicationController = require('../controllers/applicationController');
-const { verifyToken, requireRole } = require('../middleware/auth');
+const { verifyToken, requireRole, requireActiveUser } = require('../middleware/auth');
 
 // Student applies for scholarship
 router.post(
   '/apply/:scholarshipId',
   verifyToken,
   requireRole('student'),
+  requireActiveUser,
   applicationController.submitApplication
 );
 
@@ -32,6 +33,7 @@ router.patch(
   '/applications/:id/receipt',
   verifyToken,
   requireRole('student'),
+  requireActiveUser,
   applicationController.uploadReceipt
 );
 
