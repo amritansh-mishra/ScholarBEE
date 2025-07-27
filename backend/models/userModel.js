@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
   },
   phone: String,
   profilePic: String,
+  status: {
+    type: String,
+    enum: ['pending_verification', 'active', 'inactive'],
+    default: 'pending_verification'
+  },
 
   // Student specific fields
   institution: String,
@@ -69,6 +74,33 @@ const userSchema = new mongoose.Schema({
     verified: Boolean,
     verifiedAt: Date
   }],
+  // School Information
+  schoolAdmissionNumber: {
+    type: String,
+    sparse: true
+  },
+  schoolName: String,
+  schoolVerified: {
+    type: Boolean,
+    default: false
+  },
+  // Document Verification
+  documentsVerified: {
+    type: Boolean,
+    default: false
+  },
+  requiredDocuments: {
+    schoolId: {
+      verified: { type: Boolean, default: false },
+      documentNumber: String,
+      verifiedAt: Date
+    },
+    aadhaarCard: {
+      verified: { type: Boolean, default: false },
+      documentNumber: String,
+      verifiedAt: Date
+    }
+  },
   verificationAttempts: {
     type: Number,
     default: 0

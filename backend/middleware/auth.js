@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/userModel');
 
 // 🔐 Middleware to verify JWT token
 exports.verifyToken = (req, res, next) => {
@@ -26,4 +27,19 @@ exports.requireRole = (role) => (req, res, next) => {
     return res.status(403).json({ message: `Access denied: ${role} role required` });
   }
   next();
+};
+
+// Middleware to block access for users whose status is not 'active'
+exports.requireActiveUser = async (req, res, next) => {
+  try {
+    console.log('DEBUG req.user:', req.user);
+    const user = await User.findById(req.user.id);
+    console.log('DEBUG DB user:', user);
+    if (!user || user.status !== 'active') {
+      return res.status(403).json({ message: 'Account not active or verification incomplete.' });
+    }
+    next();
+  } catch (err) {
+    return res.status(500).json({ message: 'Failed to verify user status.' });
+  }
 };

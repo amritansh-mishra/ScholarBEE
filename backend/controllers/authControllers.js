@@ -18,6 +18,7 @@ exports.registerStudent = async (req, res) => {
     if (existing) return res.status(400).json({ message: 'Email already registered' });
 
     const hashed = await bcrypt.hash(password, 10);
+    // When creating a new student user, set status to 'pending_verification'
     const newUser = new User({
       fullname,
       email,
@@ -26,7 +27,13 @@ exports.registerStudent = async (req, res) => {
       institution,
       educationLevel,
       gpa,
-      familyIncome
+      familyIncome,
+      status: 'pending_verification',
+      verificationStatus: 'pending',
+      aadhaarVerified: false,
+      schoolVerified: false,
+      documentsVerified: false,
+      digiLockerVerified: false
     });
 
     await newUser.save();
