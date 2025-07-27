@@ -3,40 +3,6 @@ const Scholarship = require('../models/scholarshipModel');
 const User = require('../models/userModel');
 
 /**
- * Student Dashboard Controller
- * Retrieves all open scholarships for the student dashboard
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
-exports.getDashboard = async (req, res) => {
-  try {
-    // Fetch all scholarships with 'open' status for student to view
-    const scholarships = await Scholarship.find({ status: 'open' });
-    res.json(scholarships);
-  } catch (err) {
-    console.error('❌ Dashboard loading error:', err);
-    res.status(500).json({ message: 'Failed to load dashboard' });
-  }
-};
-
-/**
- *  Get Student Applications Controller
- * Retrieves all applications submitted by the current student
- * @param {Object} req - Express request object (contains user info from auth middleware)
- * @param {Object} res - Express response object
- */
-exports.getApplications = async (req, res) => {
-  try {
-    // Find all applications for the current student and populate scholarship details
-    const apps = await Application.find({ studentId: req.user.id }).populate('scholarshipId');
-    res.json(apps);
-  } catch (err) {
-    console.error('❌ Applications fetch error:', err);
-    res.status(500).json({ message: 'Failed to fetch applications' });
-  }
-};
-
-/**
  * Apply for Scholarship Controller
  * Allows students to submit new scholarship applications
  * @param {Object} req - Express request object
